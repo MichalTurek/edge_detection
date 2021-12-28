@@ -138,10 +138,6 @@ void NonMaximumSuppression(const int x, const int y, std::vector<uint8_t>& input
     else {
         outputImage.push_back(0);
     }
-        
-
-
-    outputImage.push_back(newPixelValue);
 }
 
 int main() {
