@@ -238,10 +238,15 @@ void edge_detection(std::vector<uint8_t>& inputImage, std::vector<uint8_t>& outp
 }
 
 
-int main() {
+int main(int argc, char* argv[]) {
+  if (argc < 2) {
+    std::cout << "Enter path to image as an argument" << '\n';
+    return -1;
+  }
+
   int width, height, bpp;
 
-  uint8_t* grayScaleImage = stbi_load("kwiatki.png", &width, &height, &bpp, 1);
+  uint8_t* grayScaleImage = stbi_load(argv[1], &width, &height, &bpp, 1);
   if (grayScaleImage == nullptr) {
       return -1;
   }
@@ -251,7 +256,7 @@ int main() {
 
   edge_detection(inputImage, outputImage, width, height);
 
-  stbi_write_png("kwiatki_output.png", width, height, CHANNEL_NUM,
+  stbi_write_png("output.png", width, height, CHANNEL_NUM,
       outputImage.data(), width * CHANNEL_NUM);
   stbi_image_free(grayScaleImage);
 
