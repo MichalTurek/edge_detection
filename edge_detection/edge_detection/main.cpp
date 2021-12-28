@@ -155,6 +155,7 @@ void Hysteresis(const int x, const int y, std::vector<uint8_t>& inputImage,
                 }
             }
         }
+      
         if (strong)
             outputImage.push_back(STRONG);
         else
