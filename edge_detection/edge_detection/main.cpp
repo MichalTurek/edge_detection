@@ -240,15 +240,17 @@ void edge_detection(std::vector<uint8_t>& inputImage, std::vector<uint8_t>& outp
 int main() {
   int width, height, bpp;
 
-  uint8_t* grayScaleImage = stbi_load("kenji.jpg", &width, &height, &bpp, 1);
-
+  uint8_t* grayScaleImage = stbi_load("kwiatki.png", &width, &height, &bpp, 1);
+  if (grayScaleImage == nullptr) {
+      return -1;
+  }
   std::vector<uint8_t> inputImage(grayScaleImage, grayScaleImage + (width * (long long)height));
   std::vector<uint8_t> outputImage;
   outputImage.reserve(inputImage.size());
 
   edge_detection(inputImage, outputImage, width, height);
 
-  stbi_write_png("kenji_output.png", width, height, CHANNEL_NUM,
+  stbi_write_png("kwiatki_output.png", width, height, CHANNEL_NUM,
       outputImage.data(), width * CHANNEL_NUM);
   stbi_image_free(grayScaleImage);
 
